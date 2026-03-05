@@ -59,12 +59,15 @@ querySnapshot.forEach((doc) => {
 const li = document.createElement("li") ; 
 
 
-li.textContent =  doc.data().quote + "" ;
+li.textContent =  doc.data().quote + "  " ;
 
 
 
 const editBtn = document.createElement("button")
 editBtn.textContent = "Edit"
+editBtn.addEventListener("click" , function(){
+  edit(doc.id , doc.data().quote)
+})
 const delBtn = document.createElement("button")
 delBtn.textContent = "Delete"
 li.appendChild(editBtn)
@@ -75,3 +78,11 @@ qList.appendChild(li)
 
 }
 getQuote()
+
+
+async function edit(id , oldQuote){
+// await updateDoc(doc(db,"quote", id))
+
+const newQuote = prompt("Enter new quote", oldQuote)
+console.log("New Quote =>" , newQuote)
+}
