@@ -25,11 +25,35 @@ import {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+// console.log(app)
+// console.log(db)
 
-async function addData(){
-await setDoc(doc(db, "cities", "LA"), {
-  name: "Los Angeles",
-  state: "CA",
-  country: "USA"
-});}
-addData()
+// async function addData(){
+// await setDoc(doc(db, "cities", "LA"), {
+//   name: "Los Angeles",
+//   state: "CA",
+//   country: "USA"
+// });}
+// addData()
+
+var input = document.getElementById("qInput") ;
+var btn = document.getElementById("qBtn") ;
+
+btn.addEventListener("click" , addQuote)
+const quotation = collection(db, "cities")
+async function addQuote(){
+    
+ await addDoc((quotation), {
+ quote : input.value , 
+ time : serverTimestamp()
+});
+
+}
+
+
+async function getQuote(){
+  const querySnapshot = await getDocs(quotation)
+querySnapshot.forEach((doc) => {
+  console.log(doc.id, " => ", doc.data().quote)});
+}
+getQuote()
