@@ -38,7 +38,7 @@ const db = getFirestore(app);
 
 var input = document.getElementById("qInput") ;
 var btn = document.getElementById("qBtn") ;
-
+var qList = document.getElementById("qList") ; 
 btn.addEventListener("click" , addQuote)
 const quotation = collection(db, "cities")
 async function addQuote(){
@@ -54,6 +54,24 @@ async function addQuote(){
 async function getQuote(){
   const querySnapshot = await getDocs(quotation)
 querySnapshot.forEach((doc) => {
-  console.log(doc.id, " => ", doc.data().quote)});
+  console.log(doc.id, " => ", doc.data().quote)
+
+const li = document.createElement("li") ; 
+
+
+li.textContent =  doc.data().quote + "" ;
+
+
+
+const editBtn = document.createElement("button")
+editBtn.textContent = "Edit"
+const delBtn = document.createElement("button")
+delBtn.textContent = "Delete"
+li.appendChild(editBtn)
+li.appendChild(delBtn)
+qList.appendChild(li)
+});
+
+
 }
 getQuote()
