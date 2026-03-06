@@ -47,11 +47,12 @@ async function addQuote(){
  quote : input.value , 
  time : serverTimestamp()
 });
-
+getQuote()
 }
 
 
 async function getQuote(){
+  qList.innerHTML = ""
   const querySnapshot = await getDocs(quotation)
 querySnapshot.forEach((doc) => {
   console.log(doc.id, " => ", doc.data().quote)
@@ -70,6 +71,7 @@ editBtn.addEventListener("click" , function(){
 })
 const delBtn = document.createElement("button")
 delBtn.textContent = "Delete"
+delBtn.onclick = () => deleteQuote(doc.id);
 li.appendChild(editBtn)
 li.appendChild(delBtn)
 qList.appendChild(li)
@@ -79,10 +81,35 @@ qList.appendChild(li)
 }
 getQuote()
 
-
-async function edit(id , oldQuote){
-// await updateDoc(doc(db,"quote", id))
-
-const newQuote = prompt("Enter new quote", oldQuote)
-console.log("New Quote =>" , newQuote)
+async function edit(id, oldQuote) {
+    const newQuote = prompt("Enter new quote", oldQuote);
+    
+    if (newQuote && newQuote !== oldQuote) {
+       
+        const docRef = doc(db, "cities", id); 
+        
+        try {
+            await updateDoc(docRef, {
+                quote: newQuote
+            });
+            console.log("Updated successfully!");
+            getQuote(); 
+        } catch (error) {
+            console.error("Error updating: ", error);
+        }
+    }
 }
+
+
+
+async function deleteQuote(id) {
+    
+    const docRef = doc(db, "cities", id); 
+    
+    
+    await deleteDoc(docRef);
+    
+   
+    getQuote(); 
+}
+
