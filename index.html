@@ -3,13 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>doc</title>
+    <title>Quotation App</title>
+    <style>
+        /* 1. Overall Page Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+        /* 2. Main Container */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #1a73e8;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* 3. Input and Add Button Group */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #1a73e8;
+        }
+
+        #qBtn {
+            padding: 12px 20px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #qBtn:hover {
+            background-color: #1557b0;
+        }
+
+        /* 4. The Quote List (ul) */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        /* 5. Individual Quote Items (li) */
+        li {
+            background: #fff;
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column; /* Stack buttons below text on small screens */
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        /* 6. Action Buttons inside li */
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Specific colors for Edit and Delete */
+        .edit-btn {
+            background-color: #fbbc05; /* Yellow */
+            color: #000;
+        }
+
+        .del-btn {
+            background-color: #ea4335; /* Red */
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Quotation</h1>
-    <input type="text" placeholder="Enter your quote" id="qInput">
-    <button id="qBtn">Add Quote</button>
-    <ul id="qList"></ul>
+
+    <div class="container">
+        <h1>Quotation</h1>
+        <div class="input-group">
+            <input type="text" placeholder="Enter your quote" id="qInput">
+            <button id="qBtn">Add Quote</button>
+        </div>
+        <ul id="qList"></ul>
+    </div>
+
     <script type="module" src="index.js"></script>
     
 </body>
