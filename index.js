@@ -65,12 +65,14 @@ li.textContent =  doc.data().quote + "  " ;
 
 
 const editBtn = document.createElement("button")
-editBtn.textContent = "Edit"
+editBtn.textContent = "Edit" ; 
+editBtn.className = "edit-btn";
 editBtn.addEventListener("click" , function(){
   edit(doc.id , doc.data().quote)
 })
 const delBtn = document.createElement("button")
-delBtn.textContent = "Delete"
+delBtn.textContent = "Delete" ;
+delBtn.className = "del-btn";
 delBtn.onclick = () => deleteQuote(doc.id);
 li.appendChild(editBtn)
 li.appendChild(delBtn)
