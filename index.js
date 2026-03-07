@@ -42,11 +42,15 @@ var qList = document.getElementById("qList") ;
 btn.addEventListener("click" , addQuote)
 const quotation = collection(db, "cities")
 async function addQuote(){
-    
+    if (input.value.trim() === "") {
+        alert("Please enter a quote before adding!");
+        return; 
+    }
  await addDoc((quotation), {
  quote : input.value , 
  time : serverTimestamp()
 });
+input.value = "";
 getQuote()
 }
 
@@ -105,13 +109,10 @@ async function edit(id, oldQuote) {
 
 
 async function deleteQuote(id) {
-    
+    const check = confirm("Do you want to delete this quote?");
+    if(check){
     const docRef = doc(db, "cities", id); 
-    
-    
     await deleteDoc(docRef);
-    
-   
-    getQuote(); 
+    getQuote(); }
 }
 

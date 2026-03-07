@@ -3,131 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotation App</title>
+    <title>Quotes</title>
     <style>
-        /* 1. Overall Page Styling */
+        /* 1. DARK THEME SETUP */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background-color: #0a0a0b;
+            color: #e4e4e7;
+            font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+            margin: 0;
             display: flex;
             justify-content: center;
-            padding-top: 50px;
-            margin: 0;
+            min-height: 100vh;
+            padding: 60px 20px;
         }
 
-        /* 2. Main Container */
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        .app-container {
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         h1 {
-            color: #1a73e8;
-            text-align: center;
-            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #555);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
         }
 
-        /* 3. Input and Add Button Group */
-        .input-group {
+        /* 2. THE INPUT BAR (Sleek & Minimal) */
+        .input-card {
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            padding: 8px;
             display: flex;
             gap: 10px;
-            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
         }
 
         input {
             flex: 1;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
+            background: transparent;
+            border: none;
+            padding: 12px 16px;
+            color: white;
+            font-size: 15px;
             outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            border-color: #1a73e8;
         }
 
         #qBtn {
-            padding: 12px 20px;
-            background-color: #1a73e8;
-            color: white;
+            background: white;
+            color: black;
             border: none;
-            border-radius: 6px;
+            padding: 0 20px;
+            border-radius: 12px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
+            transition: 0.2s;
         }
 
         #qBtn:hover {
-            background-color: #1557b0;
+            background: #d4d4d8;
+            transform: translateY(-1px);
         }
 
-        /* 4. The Quote List (ul) */
+        /* 3. THE QUOTE LIST */
         ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        /* 5. Individual Quote Items (li) */
         li {
-            background: #fff;
-            border: 1px solid #eee;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
             display: flex;
-            flex-direction: column; /* Stack buttons below text on small screens */
-            gap: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            flex-direction: column; /* Stacked text top, buttons bottom-right */
+            gap: 15px;
+            transition: border-color 0.3s;
         }
 
-        /* 6. Action Buttons inside li */
+        li:hover {
+            border-color: #3f3f46;
+        }
+
+        .quote-text {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #d4d4d8;
+        }
+
+        /* 4. BUTTON GROUP (Clean & Tight) */
         .btn-group {
             display: flex;
+            justify-content: flex-end; /* Keeps them on the right */
             gap: 8px;
-            justify-content: flex-end;
         }
 
-        button {
-            padding: 6px 12px;
+        .edit-btn, .del-btn {
+            background: #27272a;
+            color: #a1a1aa;
             border: none;
-            border-radius: 4px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 14px;
-            transition: opacity 0.2s;
+            transition: all 0.2s;
         }
 
-        button:hover {
-            opacity: 0.8;
-        }
+        .edit-btn:hover { background: #3f3f46; color: white; }
+        .del-btn:hover { background: #450a0a; color: #f87171; }
 
-        /* Specific colors for Edit and Delete */
-        .edit-btn {
-            background-color: #fbbc05; /* Yellow */
-            color: #000;
-        }
-
-        .del-btn {
-            background-color: #ea4335; /* Red */
-            color: white;
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Quotation</h1>
-        <div class="input-group">
-            <input type="text" placeholder="Enter your quote" id="qInput">
-            <button id="qBtn">Add Quote</button>
+    <div class="app-container">
+        <header>
+            <h1>Quotation_</h1>
+        </header>
+
+        <div class="input-card">
+            <input type="text" id="qInput" placeholder="Capture a thought...">
+            <button id="qBtn">Add</button>
         </div>
+
         <ul id="qList"></ul>
     </div>
 
     <script type="module" src="index.js"></script>
-    
 </body>
 </html>
