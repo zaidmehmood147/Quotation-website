@@ -36,6 +36,8 @@ const db = getFirestore(app);
 // });}
 // addData()
 
+
+
 var input = document.getElementById("qInput") ;
 var btn = document.getElementById("qBtn") ;
 var qList = document.getElementById("qList") ; 
